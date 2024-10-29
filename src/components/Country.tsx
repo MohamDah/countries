@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Link, useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { DetailedCountry as CountryType, DetailedCountry } from "../types"
 
 
@@ -9,13 +9,15 @@ export default function Country() {
 
     const [borders, setBorders] = useState<JSX.Element[] | JSX.Element | null>(null)
 
-    const param = useParams().country
+    const {countryName} = useParams()
 
     const navigate = useNavigate()
 
     useEffect(() => {
 
-        !country && fetch(`https://restcountries.com/v3.1/name/${param}`)
+        if (!country || country?.name.common !== countryName) {
+
+            fetch(`https://restcountries.com/v3.1/name/${countryName}`)
             .then(res => {
                 if (res.ok) {
                     return res.json()
@@ -27,7 +29,8 @@ export default function Country() {
                 navigate("/")
             })
 
-        // This is to get the borders names after country has loaded because I need the full name of
+        }
+            // This is to get the borders names after country has loaded because I need the full name of
         // the border country and I only get the abbreviated name
         async function getBorders(country: DetailedCountry) {
             const codes = country.borders
@@ -38,7 +41,7 @@ export default function Country() {
                     const data = await res.json()
                     const border = await data[0].name.common
                     return <button
-                        onClick={() => { navigate(`/${border}`); navigate(0) }}
+                        onClick={() => { navigate(`/${border}`);}}
                         key={border}
                         className="border"
                     >{border}</button>
@@ -50,7 +53,7 @@ export default function Country() {
         }
 
         country && getBorders(country)
-    }, [country])
+    }, [country, countryName])
 
     let countryEl = <h1>Loading</h1>
 
@@ -99,10 +102,10 @@ export default function Country() {
 
     return (
         <main className="country">
-            <Link to="/" className="back-button">
+            <a onClick={()=>navigate(-1)} className="back-button">
                 <i className="fa-solid fa-arrow-left-long" />
                 <p>Back</p>
-            </Link>
+            </a>
             {countryEl}
 
         </main >

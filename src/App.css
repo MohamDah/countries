@@ -241,6 +241,7 @@ main {
   gap: 10px;
   font-weight: var(--f-light);
   font-size: 1rem;
+  cursor: pointer;
 }
 
 .country-details {
@@ -365,6 +366,7 @@ main {
   font-size: .8rem;
   border: none;
   color: inherit;
+  cursor: pointer;
 }
 
 

@@ -13,7 +13,7 @@ import Country from './components/Country';
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path='/' element={<Layout />}>
     <Route index element={<Main />} />
-    <Route path=':country' element={<Country />} />
+    <Route path=':countryName' element={<Country />} />
   </Route>
 ))
 
