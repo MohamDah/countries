@@ -55,7 +55,7 @@ export default function Country() {
         country && getBorders(country)
     }, [country, countryName])
 
-    let countryEl = <h1>Loading</h1>
+    let countryEl = <h1>Loading...</h1>
 
 
     // this is to create the whole page after country api has loaded
@@ -90,7 +90,7 @@ export default function Country() {
                     <div className="country-borders">
                         <strong>Border Countries:</strong>
                         <div>
-                            {borders ? borders : "Loading"}
+                            {borders ? borders : "Loading..."}
                         </div>
                     </div>
                 </div>
@@ -102,12 +102,11 @@ export default function Country() {
 
     return (
         <main className="country">
-            <a onClick={()=>navigate(-1)} className="back-button">
+            <button onClick={()=>navigate(-1)} className="back-button">
                 <i className="fa-solid fa-arrow-left-long" />
                 <p>Back</p>
-            </a>
+            </button>
             {countryEl}
-
         </main >
     )
 }

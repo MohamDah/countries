@@ -242,6 +242,7 @@ main {
   font-weight: var(--f-light);
   font-size: 1rem;
   cursor: pointer;
+  border: none;
 }
 
 .country-details {
@@ -410,6 +411,6 @@ main {
 
   .country .back-button {
     width: 110px;
-    font-size: 1em
+    font-size: 1em;
   }
 }
