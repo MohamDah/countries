@@ -75,7 +75,8 @@ export default function Main() {
                 </div>
                 <select onChange={handleFilter} name="filter" 
                 defaultValue={searchParams.get("region") || `Filter By Region`}>
-                    <option value="">Filter By Region</option>
+                    <option hidden disabled value="Filter By Region">Filter By Region</option>
+                    <option value="">All</option>
                     <option value="Africa">Africa</option>
                     <option value="Americas">America</option>
                     <option value="Asia">Asia</option>

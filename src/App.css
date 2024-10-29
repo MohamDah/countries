@@ -64,12 +64,18 @@
   font-family: "Nunito Sans", sans-serif;
   margin: 0;
   padding: 0;
+  /* scrollbar-base-color: var(--bg); */
 }
+
+
+
+
 
 body {
   color: var(--text);
   background-color: var(--bg);
   height: 100%;
+  transition-duration: 300ms;
 }
 
 /* header */
@@ -81,6 +87,7 @@ header {
   padding: 0 100px;
   height: 65px;
   box-shadow: 0 1px 3px 1px hsla(0, 0%, 0%, 0.1);
+  transition-duration: 300ms;
 }
 
 header .logo-link {
@@ -134,7 +141,8 @@ main {
   align-items: center;
   padding-left: 30px;
   gap: 30px;
-  color: var(--input)
+  color: var(--input);
+  transition-duration: 300ms;
 }
 
 .home .search-container input {
@@ -147,7 +155,8 @@ main {
 }
 
 .home .search-container input::placeholder {
-  color: var(--text)
+  color: var(--text);
+  opacity: .75;
 }
 
 .home_header select {
@@ -166,6 +175,7 @@ main {
   background-position-y: 50%;
   background-color: var(--elements);
   color: inherit;
+  transition-duration: 300ms;
 }
 
 
@@ -175,7 +185,7 @@ main {
   width: 100%;
   display: grid;
   /* grid-template-rows: repeat(auto-fill, 300px; */
-  grid-template-columns: repeat(auto-fit, minmax(230px, .8fr));
+  grid-template-columns: repeat(auto-fill, minmax(230px, .8fr));
   justify-content: center;
   gap: 50px;
 }
@@ -196,7 +206,13 @@ main {
   aspect-ratio: 1 / 1.2;
   max-width: 300px;
   margin: 0 auto;
+  transition: 300ms;
+  /* transition: color 300ms */
 }
+.home_body .card:hover {
+  transform: scale(1.05);
+}
+
 
 .home_body .card img {
   width: 100%;
@@ -243,7 +259,12 @@ main {
   font-size: 1rem;
   cursor: pointer;
   border: none;
+  transition: 300ms;
 }
+.country .back-button:hover {
+  transform: scale(1.1);
+}
+
 
 .country-details {
   margin-top: 50px;
@@ -368,7 +389,12 @@ main {
   border: none;
   color: inherit;
   cursor: pointer;
+  transition: 300ms;
 }
+.country-details .country-info .country-borders .border:hover {
+  transform: scale(1.05);
+}
+
 
 
 
