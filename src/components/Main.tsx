@@ -9,21 +9,30 @@ export default function Main() {
     const [countryData, setCountryData]: [Country[] | [], any] = useState([])
 
     const [input, setInput] = useState("")
-    
+
     const [searchParams, setSearchParams] = useSearchParams();
 
 
     useEffect(() => {
         fetch("https://restcountries.com/v3.1/all?fields=name,flags,population,region,capital")
-            // fetch("https://restcountries.com/v3.1/name/germany")
             .then(res => res.json())
-            .then((data: Country[]) => setCountryData(data))
+            .then((data: Country[]) => {
+                data.sort((a, b) => {
+                    if (a.name.common < b.name.common) {
+                        return -1;
+                    }
+                    if (a.name.common > b.name.common) {
+                        return 1;
+                    }
+                    return 0;
+                })
+                setCountryData(data)
+            })
     }, [])
 
-    // countryData && console.log(countryData[5])
 
     let countryEls: [] | (JSX.Element | undefined)[] = []
-    
+
     if (countryData.length !== 0) {
         countryEls = countryData.map((country: Country) => {
             let allow = true
@@ -54,7 +63,7 @@ export default function Main() {
     function handleFilter(e: React.ChangeEvent<HTMLSelectElement>) {
         if (!e.target.value) {
             setSearchParams({})
-        } else {    
+        } else {
             setSearchParams({ region: e.target.value })
         }
     }
@@ -64,17 +73,17 @@ export default function Main() {
             <div className="home_header">
                 <div className="search-container">
                     <i className="fa-solid fa-magnifying-glass" />
-                    <input 
-                    name="search" 
-                    type="text" 
-                    placeholder="Search for a country..."
-                    value={input}
-                    onChange={e=>setInput(e.target.value)}
+                    <input
+                        name="search"
+                        type="text"
+                        placeholder="Search for a country..."
+                        value={input}
+                        onChange={e => setInput(e.target.value)}
                     />
-                    
+
                 </div>
-                <select onChange={handleFilter} name="filter" 
-                defaultValue={searchParams.get("region") || `Filter By Region`}>
+                <select onChange={handleFilter} name="filter"
+                    defaultValue={searchParams.get("region") || `Filter By Region`}>
                     <option hidden disabled value="Filter By Region">Filter By Region</option>
                     <option value="">All</option>
                     <option value="Africa">Africa</option>
